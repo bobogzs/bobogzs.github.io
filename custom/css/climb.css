@@ -1,0 +1,15 @@
+/*宠物挂件*/
+.climb {
+    display: block;
+    position: absolute;
+    max-width: 270px;
+    z-index: 2;
+    margin-top: -26.6px;
+    margin-left: 5px;
+    cursor: pointer;
+}
+@media screen and (max-width: 1200px) {
+    .climb {
+        display:none!important
+    }
+}
