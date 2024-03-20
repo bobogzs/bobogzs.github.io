@@ -2,12 +2,101 @@ var start_date = '20210101' // 开始日期
 var date = new Date();
 var end_date = '' + date.getFullYear() + (date.getMonth() > 8 ? (date.getMonth() + 1) : ("0" + (date.getMonth() + 1))) + (date.getDate() > 9 ? date.getDate() : ("0" + date.getDate())); // 结束日期
 var access_token = '121.c644d8c4*****' // accessToken
-var site_id = '16****' // 网址 id
+var site_id = '16265874' // 网址 id
 var dataUrl = 'https://baidu-tongji-api.vercel.app/api?access_token=' + access_token + '&site_id=' + site_id
 var metrics = 'pv_count' // 统计访问次数 PV 填写 'pv_count'，统计访客数 UV 填写 'visitor_count'，二选一
 var metricsName = (metrics === 'pv_count' ? '访问次数' : (metrics === 'visitor_count' ? '访客数' : ''))
 // 这里为了统一颜色选取的是“明暗模式”下的两种字体颜色，也可以自己定义
 var color = document.documentElement.getAttribute('data-theme') === 'light' ? '#4c4948' : 'rgba(255,255,255,0.7)'
+
+//旭日图
+function dateChart() {
+	let e = document.createElement("script");
+	date.setFullYear(date.getFullYear() - 1),
+	date.setTime(date.getTime() + 864e5);
+	let t = "" + date.getFullYear() + (date.getMonth() > 8 ? date.getMonth() + 1 : "0" + (date.getMonth() + 1)) + (date.getDate() > 9 ? date.getDate() : "0" + date.getDate());
+	fetch(dataUrl + ("&start_date=" + t + "&end_date=" + end_date + "&metrics=" + metrics + "&method=overview/getTimeTrendRpt")).then((e = >e.json())).then((t = >{
+		let n = t.result.items[0],
+		a = t.result.items[1],
+		r = [];
+		for (let e = 1; e < 13; e++) {
+			let e = [];
+			for (let t = 1; t < 32; t++) e.push({
+				date: "-",
+				name: t > 10 ? t: "0" + t,
+				value: 0
+			});
+			r.push(e)
+		}
+		let o = 0;
+		for (let e = 0; e < n.length; e++) {
+			let t = n[e][0].replace(/\//g, "-"),
+			l = t.split("-"),
+			s = "--" !== a[e][0] ? a[e][0] : 0;
+			r[l[1] - 1][l[2] - 1] = {
+				date: t,
+				name: l[2],
+				value: s
+			},
+			o = Math.max(o, s)
+		}
+		let l = [],
+		s = 80 / 12;
+		for (let e = 0; e < 12; e++) l.push({
+			name: metricsName,
+			type: "pie",
+			roseType: "area",
+			radius: [10 + s * e + "%", 10 + s * (e + 1) + "%"],
+			center: ["50%", "55%"],
+			label: {
+				show: !1,
+				position: "inside"
+			},
+			itemStyle: {
+				borderColor: "#fff",
+				borderWidth: 2
+			},
+			emphasis: {
+				scale: !1,
+				label: {
+					show: !0
+				}
+			},
+			data: r[e]
+		});
+		let i = JSON.stringify(l);
+		e.innerHTML = `\n
+		var dateChart = echarts.init(document.getElementById('date-chart'), 'light');\n
+		var dateOption = {\n title: {\n text: '博客访问旭日图',
+				\n x: 'center',
+				\n textStyle: {\n color: '${color}'\n
+				}\n
+			},
+			\n tooltip: {\n trigger: 'item',
+				\n formatter: function(params) {\n
+					return params.seriesName + '<br>' + params.marker + params.data.date + '<div style="float:right;margin-left:30px;font-weight:bold;">' + params.value + '</div>'\n
+				}\n
+			},
+			\n visualMap: {\n min: 0,
+				\n max: $ {
+					o
+				},
+				\n left: 'left',
+				\n top: 'bottom',
+				\n text: ['高', '低'],
+				\n color: ['#37a2da', '#92d0f9'],
+				\n textStyle: {\n color: '${color}'\n
+				},
+				\n calculable: true\n
+			},
+			\n series: $ {
+				i
+			}\n
+		};\n dateChart.setOption(dateOption);\n window.addEventListener('resize', () = >{\n dateChart.resize();\n
+		});`,
+		document.getElementById("date-chart").after(e)
+	}))
+}
 
 // 访问地图
 function mapChart () {
