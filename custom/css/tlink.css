@@ -1,0 +1,155 @@
+.tlink-item-icon {
+  margin-right: 0 !important;
+  transition: .5s !important;
+}
+/* 头像微调 */
+
+#article-container .tlink .tlink-list>.tlink-list-item::before {
+  content: none;
+}
+/* 去掉原来自带的before */
+
+#article-container .tlink .tlink-list>.tlink-list-item:hover {
+  background-color: #49B1F5;
+  box-shadow: 0 0 20px rgba(0, 0, 0, .3);
+  transition: 0.5s;
+}
+/* 鼠标经过改变背景 */
+
+#article-container .tlink .tlink-list>.tlink-list-item:hover a {
+  color: white !important;
+}
+/* 鼠标经过改变文字颜色 */
+
+#article-container .tlink .tlink-list>.tlink-list-item:hover .tlink-item-icon {
+  width: 60px;
+  margin-left: -70px;
+  -webkit-transform: rotate(-180deg);
+  -moz-transform: rotate(-180deg);
+  -o-transform: rotate(-180deg);
+  -ms-transform: rotate(-180deg);
+  transform: rotate(-180deg);
+}
+@media screen and (max-width: 900px){
+  #article-container .tlink .tlink-list>.tlink-list-item:hover .tlink-item-icon {
+    width: 90px;
+    height: 90px;
+    border-radius: 20px;
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  #article-container .tlink .tlink-list>.tlink-list-item:hover .tlink-item-tag {
+    display: none;
+  }
+}
+/* 鼠标经过头像滚动 */
+
+#article-container .tlink .tlink-list > .tlink-list-item a .tlink-item-icon {
+  margin: 26px 21px;
+  width: 66px;
+  height: 66px;
+  border-radius: 33px;
+}
+#article-container .tlink .tlink-list > .tlink-list-item a {
+  display: block;
+  height: 100%;
+}
+#article-container .tlink .tlink-item-name {
+  text-align: start;
+  padding: 40px 12px 0;
+  height: auto;
+}
+#article-container .tlink .tlink-item-desc {
+  text-align: start;
+  padding: 10px 12px 0;
+  height: auto;
+}
+.tlink-item-tag {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  padding: 2px 6px;
+  color: var(--icat-white);
+  z-index: 1;
+  border-radius: 6px;
+  -webkit-transition: .3s;
+  -moz-transition: .3s;
+  -o-transition: .3s;
+  -ms-transition: .3s;
+  transition: 0.3s;
+  font-size: 0.6rem;
+  opacity: .8;
+}
+/* 友联推荐Tag */
+
+/* PC端友联页样式 */
+
+#article-container .tlink > h2 {
+  margin: 20px 7px 0;
+}
+#article-container .tlink .tlink-desc {
+  margin: 0 7px;
+  color: var(--icat-secondtext);
+}
+#article-container .tlink .tlink-list {
+  padding: 10px 0 0;
+}
+#article-container .tlink .tlink-list > .tlink-list-item {
+  border: 1px solid var(--icat-secondbg) !important;
+  background: var(--icat-card-bg);
+  height: 120px;
+  margin: 8px 8px;
+  width: calc(100% / 4 - 16px);
+}
+@media screen and (max-width: 900px){
+  #article-container .tlink .tlink-list > .tlink-list-item {
+    height: 110px;
+  }
+  #article-container .tlink .tlink-list > .tlink-list-item {
+    border: 2px solid var(--icat-secondbg) !important;
+  }
+  #article-container .tlink .tlink-list {
+    padding: 10px 0 0;
+  }
+  #article-container .tlink .tlink-list > .tlink-list-item {
+    margin: 6px 6px;
+    width: calc(50% - 12px) !important;
+  }
+  #article-container .tlink > h2 {
+    margin: 20px 12px 0;
+  }
+  #article-container .tlink .tlink-desc {
+    margin: 0 12px;
+  }
+  #article-container .tlink .tlink-item-name {
+    font-size: 1.1rem;
+    padding: 30px 12px 0;
+  }
+  #article-container .tlink .tlink-list > .tlink-list-item a .tlink-item-icon {
+    position: absolute;
+    bottom: -30%;
+    right: 0;
+    float: right;
+    width: 100px;
+    height: 100px;
+    -webkit-transform: translate(35%,30%); 
+    -moz-transform: translate(35%,30%);
+    -o-transform: translate(35%,30%);
+    -ms-transform: translate(35%,30%);
+    transform: translate(35%,30%);
+    margin-top: -12px;
+    margin-left: -12px;
+    border-radius: 26px;
+    opacity: .2;
+  }
+  .tlink-item-tag {
+    top: 8px;
+    right: 8px;
+  }
+}
+/* PE端友联页样式 */
+
+/* iCat新友链样式 */
