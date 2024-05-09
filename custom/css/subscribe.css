@@ -11,16 +11,16 @@
   justify-content: space-between;
 }
 .rss-plan-item:visited {
-  color: var(--icat-white);
+  color: #FFFFFF;
 }
 .rss-plan-item.rss-plan-wechat {
   background: #27c125;
 }
 .rss-plan-item.rss-plan-mail {
-  background: var(--icat-blue);
+  background: #425AEF;
 }
 .rss-plan-item.rss-plan-rss {
-  background: var(--icat-orange);
+  background: #e38100;
 }
 .rss-plan-item {
   border-radius: 12px;
@@ -58,14 +58,14 @@
 
 .rss-plan-description {
   font-size: 16px;
-  color: var(--icat-white);
+  color: #FFFFFF;
   margin: 26px 0 0 30px;
   line-height: 20px;
 }
 .rss-plan-info-group {
   position: relative;
   margin: 0 0 26px 30px;
-  color: var(--icat-white);
+  color: #FFFFFF;
 }
 .rss-plan-title {
   font-size: 36px;
